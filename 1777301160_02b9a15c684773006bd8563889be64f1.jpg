@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Laporan - SarpraCare Pegawai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8FAFC; }
+        .card-glass { background: white; border: 1px solid #F1F5F9; border-radius: 32px; }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <a href="HalamanDashbordPegawai.php" class="flex items-center gap-2 text-gray-500 hover:text-blue-600 transition font-semibold">
+                <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+            </a>
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">ID Laporan: #2026-A01</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                <div class="card-glass p-8 shadow-sm">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-800">Kerusakan Switch Network</h1>
+                            <p class="text-blue-600 font-bold text-sm mt-1">Unit Teknologi Informasi</p>
+                        </div>
+                        <span class="px-4 py-1 bg-red-100 text-red-600 rounded-full text-[10px] font-bold">URGENT</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 mb-8 text-sm">
+                        <div>
+                            <p class="text-gray-400 font-bold uppercase text-[10px]">Lokasi Gedung</p>
+                            <p class="text-gray-700 font-semibold">Gedung TI (Direktorat)</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 font-bold uppercase text-[10px]">Ruangan / Lantai</p>
+                            <p class="text-gray-700 font-semibold">Ruang Server / Lantai 1</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <p class="text-gray-400 font-bold uppercase text-[10px] mb-2">Deskripsi Kerusakan (Pelapor)</p>
+                        <p class="text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-2xl italic border border-gray-100">
+                            "Koneksi internet di lantai 1 terputus total sejak pagi. Setelah dicek, lampu indikator pada switch utama mati total dan tercium bau hangus."
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-400 font-bold uppercase text-[10px] mb-3">Foto Bukti Kerusakan (Kolom: foto)</p>
+                        <div class="rounded-2xl overflow-hidden border border-gray-100">
+                            <img src="https://via.placeholder.com/800x400?text=Foto+Kerusakan+Aset" alt="Bukti" class="w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="card-glass p-8 shadow-lg sticky top-10 border-blue-100">
+                    <h2 class="text-lg font-bold text-gray-800 mb-6">Tindakan Verifikasi</h2>
+                    
+                    <form id="verifyForm" class="space-y-6">
+                        <input type="hidden" id="tahap" value="Unit Kerja">
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-3">Keputusan Awal</label>
+                            <select id="keputusan" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-blue-500 font-semibold text-gray-700">
+                                <option value="">-- Pilih Tindakan --</option>
+                                <option value="Setuju">Setuju & Teruskan ke Wadir</option>
+                                <option value="Tolak">Tolak Laporan</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Catatan Verifikator</label>
+                            <textarea id="catatan" rows="5" required placeholder="Contoh: Perlu penggantian unit switch baru tipe TP-Link 24 Port..." class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-blue-500 text-sm resize-none"></textarea>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100 mb-4">
+                            <p class="text-[10px] text-blue-700 leading-tight">
+                                <i class="fas fa-info-circle mr-1"></i> Keputusan "Setuju" akan meneruskan data ini ke pimpinan untuk persetujuan anggaran.
+                            </p>
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-blue-100 flex justify-center items-center gap-2">
+                            Kirim Verifikasi <i class="fas fa-paper-plane text-sm"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('verifyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const keputusan = document.getElementById('keputusan').value;
+            
+            alert('Laporan telah diverifikasi dengan keputusan: ' + keputusan);
+            
+            // Mengarahkan kembali ke Dashboard Pegawai setelah disubmit
+            window.location.href = 'HalamanDashbordPegawai.php';
+        });
+    </script>
+</body>
+</html>
